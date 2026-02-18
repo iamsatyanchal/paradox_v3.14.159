@@ -192,7 +192,7 @@ function App() {
                     <p className="mono-font text-sm">{Array.isArray(get('site.cdn')) ? get('site.cdn').join(', ') : 'Direct / Unknown'}</p>
                   </div>
                   <div className="flex flex-inline col-span-2 flex items-center gap-3">
-                    <img src={`https://api-point-search.vercel.app/icon/${get('site.running_on')}`} className="w-12" />
+                    <img src={`https://api-point-search.vercel.app/icon/${get('site.running_on') == 'N/A' ? "Unknown" : get('site.running_on')}`} className="w-12" />
                     <div className="border-l pl-4"> <p className="text-xs opacity-50 uppercase">CMS / Software</p>
                       <p className="mono-font text-sm">{Array.isArray(get('site.running_on')) ? get('site.running_on').join(', ') : (
                         Array.isArray(get('site.powered_by')) ? get('site.powered_by').join(', ') : "Unknown"
