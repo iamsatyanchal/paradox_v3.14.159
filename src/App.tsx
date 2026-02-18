@@ -43,7 +43,8 @@ function App() {
   const scanSite = async () => {
     const input = document.getElementById('urlInput')?.value.trim() || "";
     if (!input) {
-      return;
+      setLoading(false);
+      setShowError(true);
     }
     setShowResult(false);
     setShowError(false);
@@ -59,7 +60,8 @@ function App() {
         data = data_wait.scan_result;
         setScanData(data);
       } catch (fetchError) {
-        return;
+      setLoading(false);
+      setShowError(true);
       }
       setLoading(false);
       setShowResult(true);
@@ -121,7 +123,7 @@ function App() {
           </div>
           {loading && <div className={`loader-line mt-6 ${loading ? "block" : "hidden"}`}></div>}
         </div>
-        {showError && <div className="w-full p-4 mb-6 border border-red-500 text-red-500 bg-red-50 mono-font"></div>}
+        {showError && <div className="w-full p-4 mb-6 border border-red-500 text-red-500 bg-red-50 mono-font">An Error occurred.. Plzz try again</div>}
         {showResult && (
           <div className="flex flex-col gap-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
