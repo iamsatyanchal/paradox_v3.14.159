@@ -43,8 +43,7 @@ function App() {
   const scanSite = async () => {
     const input = document.getElementById('urlInput')?.value.trim() || "";
     if (!input) {
-      setLoading(false);
-      setShowError(true);
+      return;
     }
     setShowResult(false);
     setShowError(false);
@@ -59,12 +58,12 @@ function App() {
         let data_wait = await response.json();
         data = data_wait.scan_result;
         setScanData(data);
+        setShowResult(true);
       } catch (fetchError) {
-      setLoading(false);
-      setShowError(true);
+        setLoading(false);
+        setShowError(true);
       }
       setLoading(false);
-      setShowResult(true);
     } catch (error) {
       setLoading(false);
       setShowError(true);
@@ -227,10 +226,27 @@ function App() {
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="theme-card p-6 h-full md:col-span-2">
+              {/* <div className="theme-card p-6 h-full md:col-span-1">
                 <h3 className="mono-font text-sm uppercase border-b pb-2 mb-3 opacity-70" style={{ borderColor: "var(--border-color)" }}># System Recommendations</h3>
                 <div id="recommendationsList" className="space-y-2 h-34 overflow-y-auto pr-2">
                   <div className="text-sm opacity-50 italic">No critical issues found.</div>
+                </div>
+              </div> */}
+              <div className="theme-card p-6 h-full md:col-span-2">
+                <h3 className="mono-font text-sm uppercase border-b pb-2 mb-3 opacity-70" style={{ borderColor: "var(--border-color)" }}># Linked Files</h3>
+                <div id="linkedFilesList" className="space-y-2 h-34 overflow-y-auto pr-2">
+                  <p className="text-xs opacity-50 uppercase">Domain URLs</p>
+                  {Array.isArray(get('links.urls')) && get('links.urls').length > 0 ? get('links.urls').map((file: string, i: number) => (
+                    <div key={i} className="text-sm"><a href={get('site.final_url').endsWith("/") ? get('site.final_url').slice(0, -1) + file : get('site.final_url') + file} target="_blank">{get('site.final_url').endsWith("/") ? get('site.final_url').slice(0, -1) + file : get('site.final_url') + file}</a></div>
+                  )) : ""}
+                  <p className="text-xs opacity-50 uppercase pt-3">Local JavaScript Files</p>
+                  {Array.isArray(get('links.js_local')) && get('links.js_local').length > 0 ? get('links.js_local').map((file: string, i: number) => (
+                    <div key={i} className="text-sm"><a href={get('site.final_url').endsWith("/") ? get('site.final_url').slice(0, -1) + file : get('site.final_url') + file} target="_blank">{get('site.final_url').endsWith("/") ? get('site.final_url').slice(0, -1) + file : get('site.final_url') + file}</a></div>
+                  )) : <div className="text-sm">No linked JavaScript files found.</div>}
+                  <p className="text-xs opacity-50 uppercase pt-3">External JavaScript Files</p>
+                  {Array.isArray(get('links.js_external')) && get('links.js_external').length > 0 ? get('links.js_external').map((file: string, i: number) => (
+                    <div key={i} className="text-sm"><a href={file} target="_blank">{file}</a></div>
+                  )) : <div className="text-sm">No external linked JavaScript files found.</div>}
                 </div>
               </div>
             </div>
@@ -247,7 +263,6 @@ function App() {
         )}
       </div>
       <div className="mt-12 opacity-70 text-bold text-sm mono-font text-center">
-
       </div>
 
     </div>
