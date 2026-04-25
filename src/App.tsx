@@ -108,6 +108,10 @@ function App() {
         <div className="theme-card p-6 md:p-8 mb-8">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-grow flex flex-col">
+                   {/* <button onClick={scanSite}
+                className="theme-card px-8 py-3 font-bold uppercase tracking-wide hover:translate-y-1 hover:shadow-none transition-all active:translate-y-2">
+                Scan Now
+              </button>  */}
               <label className="mono-font text-xs uppercase mb-2 opacity-70">Target URL</label>
               <input type="text" id="urlInput" placeholder="epoxylang.js.org"
                 className="w-full bg-transparent border-b-2 p-2 mono-font text-lg focus:border-[var(--accent-color)] transition"
@@ -233,7 +237,7 @@ function App() {
                 </div>
               </div> */}
               <div className="theme-card p-6 h-full md:col-span-2">
-                <h3 className="mono-font text-sm uppercase border-b pb-2 mb-3 opacity-70" style={{ borderColor: "var(--border-color)" }}># Linked Files</h3>
+                <h3 className="mono-font text-sm uppercase border-b pb-2 topup mb-3 opacity-70" style={{ borderColor: "var(--border-color)" }}># Linked Files</h3>
                 <div id="linkedFilesList" className="space-y-2 h-34 overflow-y-auto pr-2">
                   <p className="text-xs opacity-50 uppercase">Domain URLs</p>
                   {Array.isArray(get('links.urls')) && get('links.urls').length > 0 ? get('links.urls').map((file: string, i: number) => (
@@ -270,3 +274,4 @@ function App() {
 }
 
 export default App;
+// this was good btw
