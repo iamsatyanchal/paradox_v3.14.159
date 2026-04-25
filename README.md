@@ -1,4 +1,4 @@
-# PΛЯΔDØ⤫-v3.14.159
+# PΛЯΔDØ⤫-v3.14.159.256
 
 Paradox is an advanced web analysis tool designed to evaluate the security and performance of modern web endpoints. By simply entering a URL, users can instantly retrieve detailed metrics, including domain reputation, TLS or SSL certificate status and server infrastructure details. 
 
